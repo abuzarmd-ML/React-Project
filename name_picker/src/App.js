@@ -135,10 +135,14 @@ export default function App() {
   const handleResponse = (response) => {
     if (response === "Yes") {
       setSelectedNames([...selectedNames, filteredNames[currentNameIndex]]);
+      const updatedNames = filteredNames.filter(
+        (_, index) => index !== currentNameIndex
+      );
+      setFilteredNames(updatedNames);
     } else if (response === "Maybe") {
       setCurrentNameIndex(currentNameIndex + 1);
     } else if (response === "No") {
-      const updatedNames = names.filter(
+      const updatedNames = filteredNames.filter(
         (name, index) => index !== currentNameIndex
       );
       setRejectedNames([...rejectedNames, filteredNames[currentNameIndex]]);
